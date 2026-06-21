@@ -2,16 +2,23 @@
 layout: default
 ---
 
-<article class="post">
-  <h1>{{ page.title }}</h1>
+<!-- Layout for a single news item. The post body (everything you write
+     under the front matter in the .md file) is rendered into .entry. -->
+<section class="section">
+  <div class="wrap">
+    <article class="post-full prose">
+      <p class="post-meta">
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y. %m. %d." }}</time>
+      </p>
+      <h1>{{ page.title }}</h1>
 
-  <div class="entry">
-    {{ content }}
+      <div class="entry">
+        {{ content }}
+      </div>
+
+      <a class="back" href="{{ site.baseurl }}/">← Vissza a hírekhez</a>
+
+      {% if site.disqus %}{% include disqus.html %}{% endif %}
+    </article>
   </div>
-
-  <div class="date">
-    Written on {{ page.date | date: "%B %e, %Y" }}
-  </div>
-
-  {% include disqus.html %}
-</article>
+</section>

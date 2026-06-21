@@ -1,0 +1,354 @@
+/* =================================================================
+   Department site stylesheet
+   Extracted and generalised from kvad.html (blue) and
+   flyer/cogneuro.html (red). Single source of truth for the whole
+   site: bespoke unit pages, the news section, and ordinary content.
+
+   THEMING. Everything keys off the custom properties in :root.
+   To retheme a page or the whole site, change only --brand-deep and
+   --brand-bright (plus the matching tints). Nothing else needs editing.
+   The two unit pages historically differed ONLY in these values:
+     blue  unit: --brand-deep #002855  --brand-bright #0050c8
+     red   unit: --brand-deep #7d1d2c  --brand-bright #b81d2e
+   ================================================================= */
+
+:root{
+  /* --- brand palette (swap these to retheme) --- */
+  --brand-deep:#002855;    /* hero, footer, blocks, headings */
+  --brand-bright:#0050c8;  /* links, accents, signal elements */
+
+  /* --- surfaces and text --- */
+  --bg:#ffffff;
+  --bg-tint:#f4f6fb;       /* tinted section background; red unit used #faf3f4 */
+  --ink:#15202e;
+  --muted:#5a6675;
+  --line:#dde3ec;          /* hairlines/borders; red unit used #e7dde0 */
+
+  /* --- type --- */
+  --display:'Space Grotesk',system-ui,sans-serif;
+  --body:'Inter',system-ui,sans-serif;
+  --mono:'Space Mono','SFMono-Regular',ui-monospace,monospace;
+
+  /* --- metrics --- */
+  --maxw:1080px;
+  --pad:clamp(20px,5vw,64px);
+}
+
+/* -----------------------------------------------------------------
+   Base
+   ----------------------------------------------------------------- */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{
+  margin:0;
+  font-family:var(--body);
+  color:var(--ink);
+  background:var(--bg);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+a{color:var(--brand-bright);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--brand-bright);outline-offset:3px;border-radius:2px}
+img{max-width:100%;display:block}
+
+/* -----------------------------------------------------------------
+   Layout primitives
+   ----------------------------------------------------------------- */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.section{padding-block:clamp(48px,8vw,96px)}
+.section--tint{background:var(--bg-tint);border-block:1px solid var(--line)}
+
+.eyebrow{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--brand-bright);margin:0 0 1.1rem;
+}
+h2.section-title{
+  font-family:var(--display);font-weight:600;
+  font-size:clamp(1.5rem,3.4vw,2.1rem);line-height:1.15;letter-spacing:-.01em;
+  margin:0 0 1.4rem;color:var(--brand-deep);
+}
+.lead{font-size:clamp(1.02rem,1.6vw,1.18rem);color:var(--ink);max-width:62ch}
+.muted{color:var(--muted)}
+
+.grid-2{display:grid;gap:clamp(24px,4vw,48px)}
+@media(min-width:780px){.grid-2{grid-template-columns:1.05fr .95fr}}
+
+ul.clean{list-style:none;padding:0;margin:1.2rem 0 0}
+ul.clean li{position:relative;padding-left:1.4rem;margin-bottom:.55rem}
+ul.clean li::before{content:"";position:absolute;left:0;top:.66em;width:7px;height:7px;border-radius:50%;background:var(--brand-bright)}
+
+/* placeholder pill for not-yet-final content */
+.ph{
+  background:#fff5d6;color:#7a5b00;border:1px dashed #d6b34a;border-radius:4px;
+  padding:.05em .4em;font-family:var(--mono);font-size:.82em;
+}
+
+/* -----------------------------------------------------------------
+   Top bar
+   ----------------------------------------------------------------- */
+header.topbar{
+  position:sticky;top:0;z-index:20;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(1.4) blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar .wrap{display:flex;align-items:center;gap:18px;min-height:64px}
+.brand{display:flex;align-items:center;gap:12px;color:var(--brand-deep)}
+.brand img{height:30px;width:auto}
+.brand .mark{font-family:var(--display);font-weight:600;font-size:.95rem;line-height:1.1;letter-spacing:-.01em}
+.brand .mark span{display:block;font-family:var(--mono);font-weight:400;font-size:.62rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-top:2px}
+.topbar nav{margin-left:auto;display:flex;align-items:center;gap:22px}
+.topbar nav a{color:var(--ink);font-size:.86rem;font-weight:500}
+.topbar nav a.cta{background:var(--brand-deep);color:#fff;padding:.5rem .9rem;border-radius:999px;font-size:.82rem}
+.topbar nav a.cta:hover{text-decoration:none;background:var(--brand-bright)}
+
+/* Hamburger toggle: visible only below the 760px breakpoint. */
+.nav-toggle{
+  margin-left:auto;display:inline-flex;align-items:center;justify-content:center;
+  width:42px;height:42px;padding:0;border:1px solid var(--line);border-radius:9px;
+  background:#fff;color:var(--brand-deep);cursor:pointer;
+}
+.nav-toggle .bars,.nav-toggle .bars::before,.nav-toggle .bars::after{
+  content:"";display:block;width:18px;height:2px;background:currentColor;border-radius:2px;
+}
+.nav-toggle .bars{position:relative}
+.nav-toggle .bars::before{position:absolute;left:0;top:-6px}
+.nav-toggle .bars::after{position:absolute;left:0;top:6px}
+
+/* Mobile: links collapse into a dropdown panel toggled by the button. */
+.topbar nav .navlink{display:none}
+@media(max-width:759.98px){
+  .topbar nav{
+    position:absolute;left:0;right:0;top:100%;margin-left:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    background:#fff;border-bottom:1px solid var(--line);
+    box-shadow:0 10px 26px rgba(0,0,0,.07);padding:6px 0;display:none;
+  }
+  .topbar nav.open{display:flex}
+  .topbar nav .navlink{display:block;padding:12px 22px;font-size:1rem}
+  .topbar nav a.cta{margin:10px 22px;text-align:center}
+}
+@media(min-width:760px){
+  .nav-toggle{display:none}
+  .topbar nav .navlink{display:inline}
+}
+
+/* -----------------------------------------------------------------
+   Hero
+   ----------------------------------------------------------------- */
+.hero{position:relative;overflow:hidden;background:var(--brand-deep);color:#fff}
+/* full-bleed decorative SVG layer (signal scatter, EEG trace, etc.) */
+.hero .backdrop{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.hero .wrap{position:relative;z-index:1;padding-block:clamp(64px,12vw,128px)}
+.hero .eyebrow{color:#cfe0ff}
+.hero h1{
+  font-family:var(--display);font-weight:700;
+  font-size:clamp(2rem,5.8vw,3.6rem);line-height:1.04;letter-spacing:-.02em;
+  margin:0 0 1.1rem;max-width:18ch;
+}
+.hero .sub{font-size:clamp(1.05rem,1.9vw,1.3rem);max-width:56ch;color:#dce6f5;margin:0 0 .6rem}
+.hero .en{font-family:var(--mono);font-size:.8rem;letter-spacing:.04em;color:#aac6f5;margin:0 0 2rem}
+
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:.4rem}
+.chip{
+  font-family:var(--mono);font-size:.74rem;letter-spacing:.02em;
+  border:1px solid rgba(255,255,255,.28);border-radius:999px;
+  padding:.42rem .8rem;color:#eaf1fb;
+}
+
+/* -----------------------------------------------------------------
+   Buttons
+   ----------------------------------------------------------------- */
+.hero-actions{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-block;font-weight:600;font-size:.92rem;padding:.72rem 1.3rem;border-radius:999px}
+.btn--solid{background:#fff;color:var(--brand-deep)}
+.btn--solid:hover{text-decoration:none;background:#eaf1fb}
+.btn--ghost{border:1px solid rgba(255,255,255,.4);color:#fff}
+.btn--ghost:hover{text-decoration:none;border-color:#fff}
+
+/* -----------------------------------------------------------------
+   Pillars (numbered feature cards)
+   ----------------------------------------------------------------- */
+.pillars{display:grid;gap:18px;margin-top:.5rem}
+@media(min-width:640px){.pillars{grid-template-columns:repeat(2,1fr)}}
+.pillar{border:1px solid var(--line);border-radius:14px;padding:24px;background:#fff}
+.pillar .n{font-family:var(--mono);font-size:.78rem;color:var(--brand-bright);letter-spacing:.05em}
+.pillar h3{font-family:var(--display);font-weight:600;font-size:1.08rem;color:var(--brand-deep);margin:.5rem 0 .5rem}
+.pillar p{margin:0;font-size:.94rem;color:var(--muted)}
+
+/* -----------------------------------------------------------------
+   Topic tags (curriculum areas / fields / outcomes)
+   ----------------------------------------------------------------- */
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.2rem}
+.tags span{font-family:var(--mono);font-size:.78rem;border:1px solid var(--line);border-radius:999px;padding:.4rem .85rem;background:#fff;color:var(--ink)}
+.section--tint .tags span{background:var(--bg)}
+
+/* -----------------------------------------------------------------
+   Two-column lists (outcomes / careers)
+   ----------------------------------------------------------------- */
+.cols{display:grid;gap:clamp(24px,4vw,40px)}
+@media(min-width:720px){.cols{grid-template-columns:1fr 1fr}}
+.cols h3{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--brand-deep);margin:0 0 .4rem}
+
+/* -----------------------------------------------------------------
+   Curriculum: module summary + term course rows
+   ----------------------------------------------------------------- */
+.modules{display:grid;gap:14px;margin:0 0 2.4rem}
+@media(min-width:640px){.modules{grid-template-columns:repeat(3,1fr)}}
+.module{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff}
+.module .cr{font-family:var(--mono);font-weight:700;font-size:1.5rem;color:var(--brand-deep);display:block}
+.module .nm{font-size:.9rem;color:var(--ink);margin-top:.3rem;display:block;line-height:1.35}
+.module .tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.term{margin-bottom:2rem}
+.term h3{
+  font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--brand-deep);
+  display:flex;align-items:baseline;gap:.6rem;margin:0 0 .9rem;
+  padding-bottom:.6rem;border-bottom:1px solid var(--line);
+}
+.term h3 .tcr{font-family:var(--mono);font-size:.78rem;color:var(--muted);font-weight:400}
+.courserow{
+  display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;
+  padding:.6rem 0;border-bottom:1px dotted var(--line);
+}
+.courserow:last-child{border-bottom:0}
+.courserow .cname{font-weight:500}
+.courserow .cmeta{display:flex;align-items:baseline;gap:.7rem;white-space:nowrap}
+.courserow .mtag{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-bright)}
+.courserow .ccr{font-family:var(--mono);font-size:.82rem;color:var(--brand-deep);font-weight:700}
+
+/* -----------------------------------------------------------------
+   Accordions (course detail / FAQ)
+   ----------------------------------------------------------------- */
+.acc{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:10px;background:#fff}
+.acc summary{
+  cursor:pointer;list-style:none;padding:16px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-family:var(--display);font-weight:600;font-size:1rem;color:var(--brand-deep);
+}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary .plus{font-family:var(--mono);color:var(--brand-bright);transition:transform .2s ease}
+.acc[open] summary .plus{transform:rotate(45deg)}
+.acc summary:hover{background:var(--bg-tint)}
+.acc .body{padding:0 20px 18px;color:var(--muted);font-size:.94rem}
+.acc .body p{margin:.2rem 0 .8rem}
+.acc .body .src{font-family:var(--mono);font-size:.72rem;color:var(--muted);border-top:1px solid var(--line);padding-top:.7rem;margin-top:.4rem}
+@media (prefers-reduced-motion:reduce){.acc summary .plus{transition:none}}
+
+/* -----------------------------------------------------------------
+   Image gallery
+   ----------------------------------------------------------------- */
+.gallery{display:grid;gap:14px;margin-top:1.8rem;grid-template-columns:repeat(2,1fr)}
+@media(min-width:720px){.gallery{grid-template-columns:repeat(4,1fr)}}
+.gallery figure{margin:0}
+.gallery img{width:100%;height:150px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}
+.gallery figcaption{font-family:var(--mono);font-size:.66rem;letter-spacing:.04em;color:var(--muted);margin-top:.5rem;text-transform:uppercase}
+
+/* -----------------------------------------------------------------
+   People / research-group cards
+   ----------------------------------------------------------------- */
+.groups{display:grid;gap:18px;margin-top:.5rem}
+@media(min-width:640px){.groups{grid-template-columns:1fr 1fr}}
+.group{display:flex;gap:16px;border:1px solid var(--line);border-radius:14px;padding:20px;background:#fff}
+.group img{width:74px;height:84px;object-fit:cover;border-radius:8px;flex-shrink:0;background:var(--bg-tint)}
+.group h3{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--brand-deep);margin:0 0 .15rem;line-height:1.25}
+.group .who{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin:0 0 .6rem}
+.group p{margin:0 0 .5rem;font-size:.88rem;color:var(--muted)}
+.group .label{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-bright)}
+
+/* -----------------------------------------------------------------
+   Facts (definition-list key/value blocks)
+   ----------------------------------------------------------------- */
+.facts{display:grid;gap:16px;margin-top:1rem}
+@media(min-width:640px){.facts{grid-template-columns:repeat(2,1fr)}}
+.fact{border-left:3px solid var(--brand-bright);padding:.2rem 0 .2rem 16px}
+.fact dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.fact dd{margin:.25rem 0 0;font-weight:500}
+
+/* -----------------------------------------------------------------
+   Apply / call-to-action box (inverted brand panel)
+   ----------------------------------------------------------------- */
+.applybox{background:var(--brand-deep);color:#fff;border-radius:18px;padding:clamp(28px,5vw,48px);margin-top:1rem}
+.applybox h2{color:#fff;font-family:var(--display);font-weight:600;font-size:clamp(1.4rem,3vw,1.9rem);margin:0 0 1rem}
+.applybox p{color:#dce6f5;max-width:58ch}
+.applybox a{color:#fff;font-weight:600;text-decoration:underline}
+.applybox .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem}
+.applybox a.btn{background:#fff;color:var(--brand-deep);text-decoration:none}
+.applybox a.btn:hover{text-decoration:none;background:#eaf1fb}
+.applybox a.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff}
+/* facts placed inside the inverted panel flip to light-on-dark */
+.applybox .facts .fact{border-left-color:#9cc1ff}
+.applybox .fact dt{color:#9cc1ff}
+.applybox .fact dd{color:#fff}
+
+/* -----------------------------------------------------------------
+   Footer
+   ----------------------------------------------------------------- */
+footer.site{background:var(--brand-deep);color:#cdd9ea;padding-block:48px;font-size:.88rem}
+footer.site a{color:#fff}
+footer.site .wrap{display:grid;gap:24px}
+@media(min-width:680px){footer.site .wrap{grid-template-columns:1.4fr 1fr 1fr}}
+footer.site h4{font-family:var(--display);color:#fff;font-size:.95rem;margin:0 0 .8rem}
+footer.site ul{list-style:none;margin:0;padding:0}
+footer.site li{margin-bottom:.45rem}
+footer.site .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.18);padding-top:18px;color:#9fb1c9;font-size:.78rem;font-family:var(--mono)}
+
+/* -----------------------------------------------------------------
+   Decorative SVG draw-in (signal line / EEG trace in hero)
+   Add class .draw to any <line>/<polyline> to animate it on load.
+   ----------------------------------------------------------------- */
+.draw{stroke-dasharray:3000;stroke-dashoffset:3000;animation:draw 3s ease forwards .3s}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.draw{animation:none;stroke-dashoffset:0}}
+
+/* =================================================================
+   Site-specific additions (Jekyll chrome and content pages).
+   The block above is the shared brand stylesheet; everything below
+   adapts it to the news index, individual news posts, ordinary
+   content pages, the document repository and the contact page.
+   ================================================================= */
+
+/* --- generic prose for content pages and news bodies --- */
+.prose{max-width:70ch}
+.prose h2{font-family:var(--display);color:var(--brand-deep);font-weight:600;font-size:1.4rem;margin:2.2rem 0 .8rem}
+.prose h3{font-family:var(--display);color:var(--brand-deep);font-weight:600;font-size:1.12rem;margin:1.8rem 0 .6rem}
+.prose p{margin:0 0 1rem}
+.prose ul{margin:0 0 1rem;padding-left:1.2rem}
+.prose li{margin-bottom:.4rem}
+.prose img{border-radius:10px;border:1px solid var(--line);margin:1.2rem 0}
+.prose table{border-collapse:collapse;width:100%;margin:1.2rem 0;font-size:.92rem}
+.prose th,.prose td{text-align:left;padding:.55rem .7rem;border-bottom:1px solid var(--line)}
+.prose th{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+
+/* --- news index: list of post cards --- */
+.newsfeed{display:grid;gap:18px;margin-top:.5rem}
+.news-card{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fff}
+.news-card time{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--brand-bright)}
+.news-card h3{font-family:var(--display);font-weight:600;font-size:1.18rem;color:var(--brand-deep);margin:.4rem 0 .5rem;line-height:1.25}
+.news-card h3 a{color:inherit}
+.news-card h3 a:hover{color:var(--brand-bright);text-decoration:none}
+.news-card p{margin:0 0 .8rem;color:var(--muted);font-size:.95rem}
+.read-more{font-family:var(--mono);font-size:.78rem;letter-spacing:.03em}
+
+/* --- single news post --- */
+.post-full .post-meta{font-family:var(--mono);font-size:.74rem;letter-spacing:.05em;text-transform:uppercase;color:var(--brand-bright);margin:0 0 .6rem}
+.post-full h1{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.1;color:var(--brand-deep);margin:0 0 1.4rem}
+.post-full .back{font-family:var(--mono);font-size:.78rem;display:inline-block;margin-top:2.4rem}
+
+/* --- document repository (materials) listing --- */
+.repo{display:grid;gap:18px;margin-top:1.5rem}
+@media(min-width:720px){.repo{grid-template-columns:1fr 1fr}}
+.repo-group{border:1px solid var(--line);border-radius:14px;padding:22px 24px;background:#fff}
+.repo-group h3{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--brand-deep);margin:0 0 .8rem}
+.repo-group ul{list-style:none;margin:0;padding:0}
+.repo-group li{padding:.4rem 0;border-bottom:1px dotted var(--line)}
+.repo-group li:last-child{border-bottom:0}
+.repo-group .ext{font-family:var(--mono);font-size:.62rem;text-transform:uppercase;color:var(--muted);margin-left:.4rem}
+
+/* --- contact panel --- */
+.contact-grid{display:grid;gap:clamp(20px,4vw,40px);margin-top:1.5rem}
+@media(min-width:720px){.contact-grid{grid-template-columns:1fr 1fr}}
+.contact-grid iframe{width:100%;height:320px;border:0;border-radius:14px}

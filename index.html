@@ -1,18 +1,39 @@
 ---
 layout: default
+title: Hírek
 ---
 
-<div class="posts">
-  {% for post in site.posts %}
-    <article class="post">
+<!-- ============ HOME HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Kognitív Tudományi Tanszék · BME TTK</p>
+    <h1>Üdvözöljük a Kognitív Tudományi Tanszék oldalán</h1>
+    <p class="sub">Tanszékünk 2004 óta működik a Budapesti Műszaki és Gazdaságtudományi Egyetemen. Munkatársaink és hallgatóink különös hangsúlyt fektetnek a közös kutatómunkára, amely a kognitív tudomány széles körét öleli át.</p>
+    <div class="hero-actions">
+      <a class="btn btn--solid" href="{{ site.baseurl }}/kogtud/">Idegtudomány MSc</a>
+      <a class="btn btn--ghost" href="{{ site.baseurl }}/pszichologia/">Pszichológia MA</a>
+    </div>
+  </div>
+</section>
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+<!-- ============ NEWS THREAD ============
+     A single chronological stream. Each item is a file in _posts/.
+     To post news, add a Markdown file there — see _posts/README.md.
+     The newest post appears first automatically. -->
+<section class="section">
+  <div class="wrap">
+    <p class="eyebrow">Aktuális</p>
+    <h2 class="section-title">Hírek és időpontok</h2>
 
-      <div class="entry">
-        {{ post.excerpt }}
-      </div>
-
-      <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
-    </article>
-  {% endfor %}
-</div>
+    <div class="newsfeed">
+      {% for post in site.posts %}
+      <article class="news-card">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y. %m. %d." }}</time>
+        <h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h3>
+        <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+        <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Tovább →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
