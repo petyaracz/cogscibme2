@@ -15,6 +15,7 @@ alapon, GitHub Pages-en hosztolva. Build és telepítés automatikus: a `main`
 | `style.css`             | A teljes oldal stíluslapja (a flyer-ekből általánosítva). |
 | `kogtud.md`, `pszichologia.md` | Mesterszakok bemutató oldalai. |
 | `kapcsolat.md`          | Kapcsolat oldal. |
+| `naptar.md`             | **Naptár.** Beágyazott Google Naptár. Lásd `naptar.README.md`. |
 | `dokumentumtar.md` + `dokumentumtar/` | Hallgatói letöltések (lásd `dokumentumtar/README.md`). |
 | `CNAME`                 | Az egyéni domain (`ktt.ttk.bme.hu`). |
 
@@ -23,6 +24,13 @@ alapon, GitHub Pages-en hosztolva. Build és telepítés automatikus: a `main`
 Lásd a részletes, magyar nyelvű útmutatót: [`_posts/README.md`](_posts/README.md).
 Röviden: másold le a `_posts/2026-06-21-pelda-hir.md` fájlt, nevezd át
 `ÉÉÉÉ-HH-NN-rovid-cim.md` formára, írd át a tartalmát, és commitold.
+
+## Naptár
+
+A **Naptár** menüpont egy beágyazott Google Naptárt mutat. Az eseményeket
+közvetlenül a Google Naptárban szerkeszd — az oldal automatikusan frissül,
+nem kell commitolni. Új naptár hozzáadásához vagy a megjelenés állításához
+lásd a részletes útmutatót: [`naptar.README.md`](naptar.README.md).
 
 ## Új oldal készítése
 

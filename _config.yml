@@ -56,5 +56,6 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - README.md
+  - naptar.README.md
   - CNAME
   - vendor
