@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<!-- Kutatócsoport (labor) oldal sablon. A tartalmat a `_labs/` alatti
+     fájlok adják; a fejléc mezőket (vezető, elérhetőségek, linkek) a fájl
+     front matterje állítja. Lásd: labs.README.md -->
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Kutatócsoport</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.pi %}<p class="sub">Kutatócsoport-vezető: {{ page.pi }}</p>{% endif %}
+    {% if page.frissitve %}<p class="en">Frissítve: {{ page.frissitve }}</p>{% endif %}
+    {% if page.email or page.scholar or page.mtmt or page.orcid or page.lab_url %}
+    <p class="lab-links">
+      {% if page.email %}<a href="mailto:{{ page.email }}">{{ page.email }}</a>{% endif %}
+      {% if page.scholar %}<a href="{{ page.scholar }}" target="_blank" rel="noopener">Google Scholar</a>{% endif %}
+      {% if page.mtmt %}<a href="{{ page.mtmt }}" target="_blank" rel="noopener">MTMT</a>{% endif %}
+      {% if page.orcid %}<a href="{{ page.orcid }}" target="_blank" rel="noopener">ORCID</a>{% endif %}
+      {% if page.lab_url %}<a href="{{ page.lab_url }}" target="_blank" rel="noopener">Honlap</a>{% endif %}
+    </p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <article class="page prose">
+      {{ content }}
+      <p style="margin-top:2.5rem"><a href="{{ site.baseurl }}/kutatas/">&larr; Vissza a kutatócsoportokhoz</a></p>
+    </article>
+  </div>
+</section>
+
+<style>
+  .hero .lab-links{display:flex;flex-wrap:wrap;gap:1.2rem;margin:1rem 0 0;font-family:var(--mono);font-size:.8rem}
+  .hero .lab-links a{color:#cfe0ff}
+</style>

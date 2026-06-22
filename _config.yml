@@ -40,6 +40,12 @@ google_analytics:
 
 permalink: /hirek/:title/
 
+# Kutatócsoportok (lab) oldalak. Minden labor egy fájl a `_labs/` mappában.
+# Lásd: labs.README.md
+collections:
+  labs:
+    output: true
+
 kramdown:
   input: GFM
   syntax_highlighter: rouge
@@ -57,5 +63,6 @@ exclude:
   - LICENSE
   - README.md
   - naptar.README.md
+  - labs.README.md
   - CNAME
   - vendor

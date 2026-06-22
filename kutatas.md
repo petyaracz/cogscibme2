@@ -23,7 +23,7 @@ permalink: /kutatas/
       <article class="group">
         <img src="{{ site.baseurl }}/images/munkatarsak/Pajkossy_Peter.jpg" alt="Pajkossy Péter">
         <div>
-          <h3>Figyelem és Emlékezet Kutatócsoport</h3>
+          <h3><a href="{{ site.baseurl }}/kutatocsoportok/figyelem-es-emlekezet/">Figyelem és Emlékezet Kutatócsoport</a></h3>
           <p class="who">Pajkossy Péter</p>
           <p><span class="label">Témák</span> Figyelmi és emlékezeti folyamatok kölcsönhatásai, a két rendszer deficitjeinek vizsgálata.</p>
         </div>
@@ -39,7 +39,7 @@ permalink: /kutatas/
       <article class="group">
         <img src="{{ site.baseurl }}/images/munkatarsak/Demeter_Gyula.jpg" alt="Demeter Gyula">
         <div>
-          <h3>Neuropszichológia és Megismerés Kutatócsoport</h3>
+          <h3><a href="{{ site.baseurl }}/kutatocsoportok/neuropszichologia-es-megismeres/">Neuropszichológia és Megismerés Kutatócsoport</a></h3>
           <p class="who">Demeter Gyula</p>
           <p><span class="label">Témák</span> Agysérült betegek kognitív funkciói, prospektív emlékezet, érzelemfeldolgozás és társas kogníció.</p>
         </div>
@@ -55,7 +55,7 @@ permalink: /kutatas/
       <article class="group">
         <img src="{{ site.baseurl }}/images/munkatarsak/Babarczy_Anna.jpg" alt="Babarczy Anna">
         <div>
-          <h3><a href="http://www.cogsci.bme.hu/~ktkuser/pragmaticslab/" target="_blank" rel="noopener">Kísérleti Pragmatika Kutatócsoport</a></h3>
+          <h3><a href="{{ site.baseurl }}/kutatocsoportok/kiserleti-pragmatika/">Kísérleti Pragmatika Kutatócsoport</a></h3>
           <p class="who">Babarczy Anna</p>
           <p><span class="label">Témák</span> Pragmatika és tudatelmélet, pragmatikai fejlődés, klinikai pragmatika.</p>
         </div>

@@ -16,6 +16,7 @@ alapon, GitHub Pages-en hosztolva. Build és telepítés automatikus: a `main`
 | `kogtud.md`, `pszichologia.md` | Mesterszakok bemutató oldalai. |
 | `kapcsolat.md`          | Kapcsolat oldal. |
 | `naptar.md`             | **Naptár.** Beágyazott Google Naptár. Lásd `naptar.README.md`. |
+| `_labs/`                | **Kutatócsoportok.** Egy labor = egy fájl. Lásd `labs.README.md`. |
 | `dokumentumtar.md` + `dokumentumtar/` | Hallgatói letöltések (lásd `dokumentumtar/README.md`). |
 | `CNAME`                 | Az egyéni domain (`ktt.ttk.bme.hu`). |
 
@@ -31,6 +32,14 @@ A **Naptár** menüpont egy beágyazott Google Naptárt mutat. Az eseményeket
 közvetlenül a Google Naptárban szerkeszd — az oldal automatikusan frissül,
 nem kell commitolni. Új naptár hozzáadásához vagy a megjelenés állításához
 lásd a részletes útmutatót: [`naptar.README.md`](naptar.README.md).
+
+## Kutatócsoportok (labor-oldalak)
+
+Minden kutatócsoport egy fájl a `_labs/` mappában, `/kutatocsoportok/...`
+címen. Egyszerű, karbantartható sablon: bemutatkozás + munkatársak + válogatott
+publikációk (a teljes lista helyett Scholar/MTMT-link). Akinek saját honlapja
+van, annak elég a Kutatás oldalról odalinkelni. Részletek:
+[`labs.README.md`](labs.README.md).
 
 ## Új oldal készítése
 
