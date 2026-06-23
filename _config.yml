@@ -15,8 +15,8 @@ description: Budapesti Műszaki és Gazdaságtudományi Egyetem
 #   url: "https://ktt.ttk.bme.hu"
 #   baseurl: ""
 # and restore the CNAME file (currently renamed to CNAME.disabled).
-url: "https://petyaracz.github.io"
-baseurl: "/cogscibme2"
+url: "https://cogsci-bme.github.io"
+baseurl: ""
 
 # Language of the content (used in the <html lang> attribute).
 lang: hu
