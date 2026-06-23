@@ -178,7 +178,7 @@ permalink: /kogtud/
       <article class="group">
         <img src="{{ site.baseurl }}/images/munkatarsak/Babarczy_Anna.jpg" alt="Babarczy Anna">
         <div>
-          <h3><a href="http://www.cogsci.bme.hu/~ktkuser/pragmaticslab/" target="_blank" rel="noopener">Kísérleti Pragmatika Kutatócsoport</a></h3>
+          <h3><a href="{{ site.baseurl }}/kutatocsoportok/kiserleti-pragmatika/">Kísérleti Pragmatika Kutatócsoport</a></h3>
           <p class="who">Babarczy Anna</p>
           <p><span class="label">Témák</span> Pragmatika és tudatelmélet, pragmatikai fejlődés, klinikai pragmatika.</p>
           <p><span class="label">Módszerek</span> Viselkedéses paradigmák, korpuszelemzés, szemmozgás-követés.</p>
