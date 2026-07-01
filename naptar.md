@@ -32,7 +32,7 @@ lead: A félév menetrendje és a tanszéki események egy helyen.
 <div class="calendar-embed">
   <iframe
     title="Tanszéki naptár"
-    src="https://calendar.google.com/calendar/embed?src=4c00e7aa0bd8409fb810391e0d4427b5554d569b716b3ff17d6302da25bfb290%40group.calendar.google.com&ctz=Europe%2FBudapest&showTitle=0"
+    src="https://calendar.google.com/calendar/embed?src=9953bbb5e334848db13648e8808fd26ff509104af9b0a6bc982fe83c96d7fe9a%40group.calendar.google.com&ctz=Europe%2FBudapest&showTitle=0"
     loading="lazy"
     style="border:0"
     width="100%"

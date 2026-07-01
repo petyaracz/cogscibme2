@@ -31,6 +31,34 @@ Nyisd meg a Google Naptárt, és a megfelelő naptárba vegyél fel eseményt a
 szokásos módon (cím, időpont, helyszín, leírás). Ennyi — az oldal automatikusan
 frissül, nem kell commitolni.
 
+## A megjelenített naptár lecserélése
+
+Ha a beágyazott naptárat egy másikra kell cserélni (pl. új tanszéki naptárt
+hoztak létre, és a régi helyett azt kell mutatni):
+
+1. Szerezd meg az új naptár **azonosítóját**. Ez kétféleképp található meg:
+   - Google Naptár → az adott naptár **Beállítások és megosztás** →
+     **A naptár integrálása** szakasz → **Naptár-azonosító**
+     (pl. `valami@group.calendar.google.com`); vagy
+   - a naptár megosztási linkjéből (`calendar.google.com/calendar/u/0?cid=...`):
+     a `cid=` utáni érték egy Base64-kódolt azonosító. Terminálban dekódolható:
+     `echo "A_CID_ERTEKE" | base64 -d` — az eredmény a
+     `...@group.calendar.google.com` azonosító.
+2. Ellenőrizd, hogy az új naptár **nyilvános**-e (lásd fent) — ha nem, a
+   látogatók nem fogják látni.
+3. A `naptar.md` fájlban az `<iframe src="...">` sorban cseréld le a `src=`
+   paraméter értékét az új azonosítóra (az `@` jelet `%40`-re írva), a
+   `&ctz=...` és a többi paraméter változatlanul maradhat. Például:
+
+   ```
+   src="https://calendar.google.com/calendar/embed?src=UJ_NAPTAR_ID%40group.calendar.google.com&ctz=Europe%2FBudapest&showTitle=0"
+   ```
+4. Commitold és pusholtold a `naptar.md` módosítását a `main` ágra; néhány
+   percen belül élesedik.
+
+Ha csak a **régit lecserélni** szeretnéd (nem hozzáadni egy másodikat), egyetlen
+`src=` paraméter legyen az URL-ben — ne maradjon bent a régi naptár azonosítója.
+
 ## Több naptár megjelenítése egyszerre
 
 Egy beágyazásban több naptár is mutatható, színkódolva (pl. külön naptár a
